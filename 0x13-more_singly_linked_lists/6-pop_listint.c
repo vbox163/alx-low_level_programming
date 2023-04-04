@@ -8,8 +8,8 @@
  */
 int pop_listint(listint_t **head)
 {
-  listint_t *temp;  /* a temporary pointer to the next node in the list */
-  int num;          /* the value stored in the head node */
+listint_t *temp;  /* a temporary pointer to the next node in the list */
+int num;          /* the value stored in the head node */
 
   /* Check if the list is empty or the head pointer is NULL */
 	if (!head || !*head)
