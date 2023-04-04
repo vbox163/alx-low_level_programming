@@ -1,8 +1,8 @@
 #include "lists.h"
 
 /**
- * insert_nodeint_at_index - inserts a new node with given value at a given index
- *
+ * insert_nodeint_at_index - inserts a new node with
+ * given value at a given index
  * @head: pointer to a pointer to the head of the list
  * @idx: index at which to insert the new node
  * @n: value of the new node
@@ -25,7 +25,8 @@ listint_t *insert_nodeint_at_index(listint_t **head, unsigned int idx, int n)
 	new_node->n = n;
 	new_node->next = NULL;
 
-	/* Handle the case when the new node is to be inserted at the head of the list */
+	/* Handle the case when the new node is to be */
+	/* inserted at the head of the list */
 	if (idx == 0)
 	{
 		new_node->next = *head;
