@@ -12,12 +12,12 @@ Return: number of nodes in the linked list
 */
 size_t listint_len(const listint_t *h)
 {
-size_t num = 0; / initialize a counter variable */
+size_t num = 0; /* initialize a counter variable */
 
-while (h) /* loop through each node of the linked list /
+while (h) /* loop through each node of the linked list */
 {
-num++; / increment the counter for each node /
-h = h->next; / move to the next node */
+num++; /* increment the counter for each node */
+h = h->next; /* move to the next node */
 }
 
 return (num); /* return the final count of nodes */
