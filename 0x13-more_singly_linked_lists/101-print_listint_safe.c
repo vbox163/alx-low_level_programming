@@ -1,51 +1,36 @@
 #include "lists.h"
-
 /**
- * print_listint_safe - prints a linked list with a loop safely
- * @head: pointer to the first node in the list
- *
- * Return: number of nodes in the list
+ * print_listint_safe - function that prints a linked list with a loop safely.
+ * @head: pointer to the 1st node of the linked list
+ * Return: new_node
  */
 size_t print_listint_safe(const listint_t *head)
 {
-	const listint_t *slow = head, *fast = head;
-	size_t count = 0;
+	const listint_t *tmp_n = NULL;
+	const listint_t *l_n = NULL;
+	size_t counter = 0;
+	size_t new_n;
 
-	/* Check if list is empty */
-	if (head == NULL)
-		return (0);
-
-	/* Traverse the list with two pointers */
-	while (slow && fast && fast->next)
+	tmp_n = head;
+	while (tmp_n)
 	{
-		/* Move slow pointer by one node */
-		slow = slow->next;
-		/* Move fast pointer by two nodes */
-		fast = fast->next->next;
-
-		/* Check if there's a loop */
-		if (slow == fast)
+		printf("[%p] %d\n", (void *)tmp_n, tmp_n->n);
+		counter++;
+		tmp_n = tmp_n->next;
+		l_n = head;
+		new_n = 0;
+		while (new_n < counter)
 		{
-			/* Reset slow to head and traverse with both pointers again */
-			slow = head;
-			while (slow != fast)
+			if (tmp_n == l_n)
 			{
-				printf("[%p] %d\n", (void *)slow, slow->n);
-				count++;
-				slow = slow->next;
-				fast = fast->next;
+				printf("-> [%p] %d\n", (void *)tmp_n, tmp_n->n);
+				return (counter);
 			}
-
-			/* Print the node where the loop starts */
-			printf("[%p] %d\n", (void *)slow, slow->n);
-			count++;
-			return (count);
+			l_n = l_n->next;
+			new_n++;
 		}
-
-		/* If there's no loop, print the node */
-		printf("[%p] %d\n", (void *)slow, slow->n);
-		count++;
+		if (!head)
+			exit(98);
 	}
-
-	return (count);
+	return (counter);
 }
