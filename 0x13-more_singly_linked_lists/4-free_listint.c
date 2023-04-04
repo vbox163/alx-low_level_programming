@@ -6,13 +6,13 @@
  */
 void free_listint(listint_t *head)
 {
-    listint_t *temp;  // Temporary node to hold the next node to free
+  listint_t *temp;  /* Temporary node to hold the next node to free*/
 
-    // Traverse the list, freeing each node one by one
+  /* Traverse the list, freeing each node one by one */
     while (head)
     {
-        temp = head->next; // Store the next node to free
-        free(head);        // Free the current node
-        head = temp;       // Move to the next node
+      temp = head->next; /* Store the next node to free */
+      free(head);        /* Free the current node */
+      head = temp;       /* Move to the next node */
     }
 }
