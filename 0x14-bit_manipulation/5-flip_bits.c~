@@ -1,0 +1,70 @@
+#include "main.h"
+
+/**
+ * flip_bits - Find the number of bits needed to flip to change
+ * one number to the other
+ * @n: First number to check bits
+ * @m: Second number to check bits
+ *
+ * Return: Number of bits needed to flip
+ */
+unsigned int flip_bits(unsigned long int n, unsigned long int m)
+{
+	unsigned long int nlen; /* Number of bits in n */
+	unsigned long int mlen; /* Number of bits in m */
+	unsigned long int flip; /* Number of bits to flip */
+	unsigned long int storen; /* Store n for manipulation */
+	unsigned long int storem; /* Store m for manipulation */
+
+	/* Initialize variables */
+	nlen = mlen = flip = 0;
+	storen = n;
+	storem = m;
+
+	/* Count number of bits in n */
+	while (n > 0)
+	{
+		n = n >> 1; /* Shift n right by 1 to count next bit */
+		nlen++; /* Increment nlen for next iteration */
+	}
+
+	/* Count number of bits in m */
+	while (m > 0)
+	{
+		m = m >> 1; /* Shift m right by 1 to count next bit */
+		mlen++; /* Increment mlen for next iteration */
+	}
+
+	m = storem; /* Restore m from storem for comparison */
+	n = storen; /* Restore n from storen for comparison */
+
+	/* Compare number of bits in m and n */
+	if (mlen > nlen)
+	{
+		/* Loop until all bits of m are processed */
+		while (mlen > 0)
+		{
+			/* Compare least significant bits of m and n */
+			if ((m & 1) != (n & 1))
+				flip += 1; /* Increment flip for different bits */
+			m = m >> 1; /* Shift m right by 1 to process the next bit */
+			n = n >> 1; /* Shift n right by 1 to process the next bit */
+			mlen--; /* Decrement mlen for next iteration */
+		}
+	}
+	else
+	{
+		/* Loop until all bits of n are processed */
+		while (nlen > 0)
+		{
+			/* Compare least significant bits of m and n */
+			if ((m & 1) != (n & 1))
+				flip += 1; /* Increment flip for different bits */
+			m = m >> 1; /* Shift m right by 1 to process the next bit */
+			n = n >> 1; /* Shift n right by 1 to process the next bit */
+			nlen--; /* Decrement nlen for next iteration */
+		}
+	}
+
+	return (flip); /* Return the number of bits to flip */
+}

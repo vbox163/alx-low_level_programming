@@ -1,0 +1,27 @@
+#include "main.h"
+
+/*
+ * get_bit - Return the value of a bit at a given index
+ * @n: The number to find the bit value from
+ * @index: The index of the bit value to look for
+ *
+ * Return: Value of the bit at the index, -1 if an error occurred
+ */
+int get_bit(unsigned long int n, unsigned int index)
+{
+	unsigned long int count; /* Variable to keep track of bit position */
+
+	count = 0; /* Initialize count to 0 */
+	if (index > 63) /* Check if index is out of range (0-63) */
+		return (-1); /* Return -1 for error */
+	while (n > 0) /* Loop until all bits of n are processed */
+	{
+		if (count == index) /* Check if count matches index */
+			return (n & 1); /* Return the value of the bit at the index */
+		n = n >> 1; /* Shift n right by 1 to process the next bit */
+		count++; /* Increment count for next iteration */
+	}
+	if (count < index) /* Check if count is less than index */
+		return (0); /* Return 0 if index is beyond the number of bits in n */
+	return (-1); /* Return -1 for error */
+}
